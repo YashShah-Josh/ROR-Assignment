@@ -14,7 +14,7 @@ def hangman(categories)
   guessed_set = []
 
   puts "\nWelcome to Hangman!"
-  puts "The word is from the category: #{category.capitalize}"
+  puts "\nThe word is from the category: #{category.capitalize}"
   puts "Guess the letters in the word!"
 
   while $lives > 0
@@ -67,4 +67,12 @@ categories = {
 }
 
 # Start the game
-hangman(categories)
+for i in 1..5
+  if $lives == 0
+    break
+  end
+  
+  puts "\nLevel #{i}"
+  hangman(categories)
+end
+
