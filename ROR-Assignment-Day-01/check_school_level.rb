@@ -1,22 +1,20 @@
 def check_school_level(grade)
-  if 1<= grade && grade <= 5
-    return "Elementary"
-  elsif 6<= grade && grade <= 8
-    return "Middle School"
-  elsif 9<= grade && grade <= 12
-    return "High School"
+  #use case to check the grade and return the school level
+  case grade
+  when 1..5
+    "Elementary"
+  when 6..8
+    "Middle School"
+  when 9..12
+    "High School"
   else
-    return "College"
-
-  end
+    "College"
+  end  
 end
 
 print "Enter a School Grade:"
-
+#Input from the user
 grade = gets.strip
 
-if grade.match(/^\d+$/)
-  puts check_school_level(grade.to_i)
-else
-  puts ("Enter a valid grade")
-end
+#print the school level based on the grade
+puts (grade.match?(/^\d+$/)) ? check_school_level(grade.to_i) : "Enter a valid grade"

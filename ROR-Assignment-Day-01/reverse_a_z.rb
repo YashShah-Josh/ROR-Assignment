@@ -1,3 +1,6 @@
-puts "Method 1:" "abcdefghijklmnopqrstuvwxyz".reverse
-puts "Method 2:" ('a'..'z').to_a.reverse.join
+#Two ways to print aplhabets in reverse order
+print "Method 1:" 
+puts "abcdefghijklmnopqrstuvwxyz".reverse
+print "Method 2:" 
+puts ('a'..'z').to_a.reverse.join
 

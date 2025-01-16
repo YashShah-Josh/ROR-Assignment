@@ -1,5 +1,5 @@
 def validate_input(input, regex)
-  if input.match(regex)
+  if input.match?(regex)
     puts "Valid input: #{input}"
   else
     puts "Invalid input: #{input}"
@@ -23,7 +23,7 @@ validate_input(name, /^[A-Za-z\s\-]+$/)
 
 # Test gender
 print "Enter gender (M/F): "
-gender = gets.chomp
+gender = gets.chomp.strip.upcase
 validate_input(gender, /^[MF]$/)
 
 # Test amount
