@@ -3,9 +3,7 @@ def get_ip_class(ip_address)
   octets = ip_address.split('.')
 
   # Ensure that the IP address consists of exactly 4 octets
-  if octets.length != 4
-    return "Invalid IP address format"
-  end
+  return "Invalid IP address format" if octets.length != 4
 
   # Convert the first octet to an integer
   first_octet = Integer(octets[0])
