@@ -9,7 +9,7 @@ end
 # Define module LoanEligibility
 module LoanEligibility
     # IMF members list
-    IMB_MEMBERS = [
+    IMF_MEMBERS = [
       "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", 
       "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", 
       "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", 
@@ -48,12 +48,12 @@ module LoanEligibility
     ]
   
     # Check if the country is an IMF member
-    def self.is_imf_member?(country_name)
-      IMB_MEMBERS.include?(country_name)
+    def is_imf_member?(country_name)
+      IMF_MEMBERS.include?(country_name)
     end
   
     # Debt sustainability based on GDP and debt ratio
-    def self.debt_sustainability(country_name, gdp, debt)
+    def debt_sustainability(country_name, gdp, debt)
       if is_imf_member?(country_name)
         dept_gdp_ratio = DebtGdpRatio.debt_gdp_ratio(gdp, debt)
         dept_gdp_ratio <= 60
@@ -63,27 +63,32 @@ module LoanEligibility
     end
   
     # Check if the country is committed to reforms
-    def self.commitment_to_reforms(country_name)
-      is_imf_member?(country_name) ? "Country is committed to reforms" : "Country is not a member of IMF"
+    def commitment_to_reforms(country_name)
+      is_imf_member?(country_name) ? true : false
     end
   
     # Determine loan eligibility based on GDP and debt sustainability
-    def self.loan_eligibility(country_name, gdp, debt)
+    def loan_eligibility(country_name, gdp, debt)
       if is_imf_member?(country_name)
-        debt_sustainability(country_name, gdp, debt) ? "Loan is approved" : "Loan is not approved"
+        debt_sustainability(country_name, gdp, debt) && commitment_to_reforms(country_name) ? "Loan is approved" : "Loan is not approved"
       else
         "Country is not a member of IMF"
       end
     end
   
     # Call loan eligibility method (for easier access)
-    def self.details(country_name, gdp, debt)
+    def details(country_name, gdp, debt)
       loan_eligibility(country_name, gdp, debt)
     end
   end
 
+class LoanEligible 
+  include LoanEligibility
+
 # Start of the main logic with rescue for invalid input
 begin
+  puts "Loan Eligibility Tool"
+  
   print "Enter the country name: "
   country_name = gets.chomp.split.map(&:capitalize).join(' ')
 
@@ -94,8 +99,10 @@ begin
   debt = Integer(gets.chomp)
 
   # Example of usage:
-  puts LoanEligibility.details(country_name, gdp, debt)  # Adjust the values as needed
+  loan = LoanEligible.new
+  puts loan.details(country_name, gdp, debt)  # Adjust the values as needed
 
-rescue ArgumentError => e
-  puts "Invalid input. Please enter valid numerical values for GDP and Debt."
+rescue Error => e
+  puts "Error: #{e.message}"
+end
 end
