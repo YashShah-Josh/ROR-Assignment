@@ -53,6 +53,8 @@ def hangman(categories)
     if guessed_letters.join("") == guess_word
         puts guessed_letters.join(" ")
       puts "Congratulations! You won! The word was '#{guess_word}'."
+      #to delete the word from the category to avoid repetition
+      categories[category].delete(guess_word)
       return
     end
   end
