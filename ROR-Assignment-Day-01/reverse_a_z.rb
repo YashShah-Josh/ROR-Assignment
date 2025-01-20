@@ -1,3 +1,5 @@
+#3. Print a-z in reverse order
+
 #Two ways to print aplhabets in reverse order
 print "Method 1:" 
 puts "abcdefghijklmnopqrstuvwxyz".reverse

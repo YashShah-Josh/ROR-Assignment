@@ -1,3 +1,5 @@
+#4. Regex for mobile number, email address, name, gender(M / F) and  amount
+
 def validate_input(input, regex)
   if input.match?(regex)
     puts "Valid input: #{input}"

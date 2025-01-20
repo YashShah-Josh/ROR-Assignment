@@ -1,3 +1,5 @@
+#1. Write a program to display number is prime or not
+
 def is_number_prime_or_not(number)
   # n=number
   #check if the number is 0, 1 or a negative number
