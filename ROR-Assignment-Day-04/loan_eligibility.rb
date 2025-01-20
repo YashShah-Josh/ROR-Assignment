@@ -2,7 +2,8 @@
 module DebtGdpRatio
     # Define method debt_gdp_ratio
     def self.debt_gdp_ratio(gdp, debt)
-      (debt / gdp) * 100
+      return 'GDP cannot be zero' if gdp == 0
+      (debt.to_f / gdp.to_f) * 100
     end
 end
   
@@ -64,7 +65,7 @@ module LoanEligibility
   
     # Check if the country is committed to reforms
     def commitment_to_reforms(country_name)
-      is_imf_member?(country_name) ? true : false
+      is_imf_member?(country_name) 
     end
   
     # Determine loan eligibility based on GDP and debt sustainability
