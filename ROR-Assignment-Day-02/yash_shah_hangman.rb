@@ -1,3 +1,5 @@
+#Create a hangman game in ruby
+
 $lives = 5
 
 # Function to choose a random word and its category
