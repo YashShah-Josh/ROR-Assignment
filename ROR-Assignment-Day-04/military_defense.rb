@@ -38,47 +38,11 @@ module MilitaryAndDefense
       cybersecurity_status = cybersecurity_preparedness(total_incidents, resolved_incidents)
   
       <<-DETAILS
-  Country: #{country_name}
-  Defense Spending (% of GDP): #{defense_spending}
-  Global Military Rank: #{rank_comparison}
-  Cybersecurity Preparedness: #{cybersecurity_status}
+          Country: #{country_name}
+          Defense Spending (% of GDP): #{defense_spending}
+          Global Military Rank: #{rank_comparison}
+          Cybersecurity Preparedness: #{cybersecurity_status}
       DETAILS
     end
-  end
-  class MilitaryAndDefenseAnalysis
-    include MilitaryAndDefense
-  end
-
-  # Main Program
-  begin
-    puts "Military and Defense Analysis Tool"
-  
-    print "Enter the country name: "
-    country_name = gets.chomp.split.map(&:capitalize).join(' ')
-  
-    print "Enter Defense Budget: "
-    defense_budget = gets.chomp.to_f
-  
-    print "Enter GDP: "
-    gdp = gets.chomp.to_f
-  
-    print "Enter Global Military Rank: "
-    rank = gets.chomp.to_i
-  
-    print "Enter Total Number of Countries: "
-    total_countries = gets.chomp.to_i
-  
-    print "Enter Total Cybersecurity Incidents Reported: "
-    total_incidents = gets.chomp.to_i
-  
-    print "Enter Number of Resolved Cybersecurity Incidents: "
-    resolved_incidents = gets.chomp.to_i
-  
-    # Display analysis details
-    military_analysis = MilitaryAndDefenseAnalysis.new
-    puts military_analysis.details(country_name, defense_budget, gdp, rank, total_countries, total_incidents, resolved_incidents)
-  
-  rescue => e
-    puts "Error: #{e.message}"
-  end
+end
   

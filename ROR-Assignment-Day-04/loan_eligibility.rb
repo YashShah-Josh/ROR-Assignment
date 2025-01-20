@@ -6,7 +6,7 @@ module DebtGdpRatio
       (debt.to_f / gdp.to_f) * 100
     end
 end
-  
+
 # Define module LoanEligibility
 module LoanEligibility
     # IMF members list
@@ -81,29 +81,5 @@ module LoanEligibility
     def details(country_name, gdp, debt)
       loan_eligibility(country_name, gdp, debt)
     end
-  end
-
-class LoanEligible 
-  include LoanEligibility
-
-# Start of the main logic with rescue for invalid input
-begin
-  puts "Loan Eligibility Tool"
-  
-  print "Enter the country name: "
-  country_name = gets.chomp.split.map(&:capitalize).join(' ')
-
-  print "Enter the GDP: "
-  gdp = Integer(gets.chomp)
-
-  print "Enter the Debt: "
-  debt = Integer(gets.chomp)
-
-  # Example of usage:
-  loan = LoanEligible.new
-  puts loan.details(country_name, gdp, debt)  # Adjust the values as needed
-
-rescue Error => e
-  puts "Error: #{e.message}"
 end
-end
+
