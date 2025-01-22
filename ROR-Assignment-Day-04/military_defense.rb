@@ -26,6 +26,8 @@ module MilitaryAndDefense
         "Good preparedness with a resolution rate of #{resolution_rate.round(2)}%."
       when 50...70
         "Moderate preparedness with a resolution rate of #{resolution_rate.round(2)}%."
+      when 100..Float::INFINITY
+        "Invalid resolution rate. Resolved incidents cannot be more than total incidents."
       else
         "Poor preparedness with a resolution rate of #{resolution_rate.round(2)}%."
       end

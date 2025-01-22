@@ -2,15 +2,24 @@ require_relative 'loan_eligibility'
 require_relative 'economic_analysis'
 require_relative 'military_defense'
 
-class AnalysisLoan
-    include DebtGdpRatio
-    include LoanEligibility
-    include EconomicAnalysis
+class LoanEligibilityTool
+  include DebtGdpRatio
+  include LoanEligibility
+end
+
+class EconomicAnalysisTool
+  include DebtGdpRatio
+  include EconomicAnalysis
+end
+
+class MilitaryAndDefenseAnalysis
+  include MilitaryAndDefense
+end
+
+class MilitaryAndDefenseAnalysis
     include MilitaryAndDefense
 end
 
-
-    analysis_loan = AnalysisLoan.new
 
     puts "Analysis Loan Tool"
 
@@ -48,8 +57,8 @@ end
             imports = gets.chomp.to_f
           
             # Display analysis details
-            # economic_analysis = EconomicAnalysisTool.new
-            puts analysis_loan.details(country_name, gdp, debt, initial_price, final_price, years, exports, imports)
+            economic_analysis = EconomicAnalysisTool.new
+            puts economic_analysis.details(country_name, gdp, debt, initial_price, final_price, years, exports, imports)
           
           rescue => e
             puts "Error: #{e.message}"
@@ -81,8 +90,8 @@ end
             resolved_incidents = gets.chomp.to_i
           
             # Display analysis details
-            # military_analysis = MilitaryAndDefenseAnalysis.new
-            puts analysis_loan.details(country_name, defense_budget, gdp, rank, total_countries, total_incidents, resolved_incidents)
+            military_analysis = MilitaryAndDefenseAnalysis.new
+            puts military_analysis.details(country_name, defense_budget, gdp, rank, total_countries, total_incidents, resolved_incidents)
           
           rescue => e
             puts "Error: #{e.message}"
@@ -102,8 +111,8 @@ end
             debt = Integer(gets.chomp)
           
             # Example of usage:
-            # loan = LoanEligible.new
-            puts analysis_loan.details(country_name, gdp, debt)  # Adjust the values as needed
+            loan = LoanEligibilityTool.new
+            puts loan.details(country_name, gdp, debt)  # Adjust the values as needed
           
           rescue Error => e
             puts "Error: #{e.message}"
