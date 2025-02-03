@@ -1,6 +1,7 @@
 require_relative 'loan_eligibility'
 require_relative 'economic_analysis'
 require_relative 'military_defense'
+require_relative 'debt_gdp_ratio'
 
 class LoanEligibilityTool
   include DebtGdpRatio
@@ -15,17 +16,11 @@ end
 class MilitaryAndDefenseAnalysis
   include MilitaryAndDefense
 end
-
-class MilitaryAndDefenseAnalysis
-    include MilitaryAndDefense
-end
-
-
     puts "Analysis Loan Tool"
 
     puts "Choose the tool you want to use: "
     print "1. Economic Analysis Tool\n2. Military and Defense Analysis Tool\n3. Loan Eligibility Tool\n"
-    choice = gets.chomp.to_i
+    choice = Integer(gets.chomp)
 
     case choice
     when 1
@@ -33,7 +28,7 @@ end
             puts "Economic Analysis Tool"
           
             print "Enter the country name: "
-            country_name = gets.chomp.split.map(&:capitalize).join(' ')
+            country_name = gets.chomp.squish.titleize
           
             print "Enter GDP: "
             gdp = gets.chomp.to_f
@@ -45,10 +40,10 @@ end
             initial_price = gets.chomp.to_f
           
             print "Enter Final Price (of goods/services): "
-            final_price = gets.chomp.to_f
+            final_price = Integer(gets.chomp)
           
             print "Enter the number of years over which inflation occurred: "
-            years = gets.chomp.to_i
+            years = Integer(gets.chomp)
           
             print "Enter Total Exports: "
             exports = gets.chomp.to_f
@@ -69,7 +64,7 @@ end
             puts "Military and Defense Analysis Tool"
           
             print "Enter the country name: "
-            country_name = gets.chomp.split.map(&:capitalize).join(' ')
+            country_name = gets.chomp.squish.titleize
           
             print "Enter Defense Budget: "
             defense_budget = gets.chomp.to_f
@@ -78,16 +73,16 @@ end
             gdp = gets.chomp.to_f
           
             print "Enter Global Military Rank: "
-            rank = gets.chomp.to_i
+            rank = Integer(gets.chomp)
           
             print "Enter Total Number of Countries: "
-            total_countries = gets.chomp.to_i
+            total_countries = Integer(gets.chomp)
           
             print "Enter Total Cybersecurity Incidents Reported: "
-            total_incidents = gets.chomp.to_i
+            total_incidents = Integer(gets.chomp)
           
             print "Enter Number of Resolved Cybersecurity Incidents: "
-            resolved_incidents = gets.chomp.to_i
+            resolved_incidents = Integer(gets.chomp)
           
             # Display analysis details
             military_analysis = MilitaryAndDefenseAnalysis.new
@@ -102,7 +97,7 @@ end
             puts "Loan Eligibility Tool"
             
             print "Enter the country name: "
-            country_name = gets.chomp.split.map(&:capitalize).join(' ')
+            country_name = gets.chomp.squish.titleize
           
             print "Enter the GDP: "
             gdp = Integer(gets.chomp)
