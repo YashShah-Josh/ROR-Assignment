@@ -46,12 +46,8 @@ module LoanEligibility
   
     # Debt sustainability based on GDP and debt ratio
     def debt_sustainability(country_name, gdp, debt)
-      if is_imf_member?(country_name)
         dept_gdp_ratio = DebtGdpRatio.debt_gdp_ratio(gdp, debt)
         dept_gdp_ratio <= 60
-      else
-        "Country is not a member of IMF"
-      end
     end
   
     # Check if the country is committed to reforms
@@ -64,7 +60,7 @@ module LoanEligibility
       if is_imf_member?(country_name)
         debt_sustainability(country_name, gdp, debt) && commitment_to_reforms(country_name) ? "Loan is approved" : "Loan is not approved"
       else
-        "Country is not a member of IMF"
+        "Country is not a member of IMF so loan can't be approved"
       end
     end
   
